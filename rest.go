@@ -26,11 +26,24 @@ func main() {
 var html string
 
 func respond(w http.ResponseWriter, r *http.Request) {
+	headers := []string{
+		"Allow",
+		"Access-Control-Allow-Methods",
+	}
+
+	for _, header := range headers {
+		w.Header().Set(header, "POST,PUT,DELETE,GET,OPTIONS")
+	}
+	w.Header().Set("Access-Control-Allow-Origins", "*")
 	fmt.Fprintln(w, r.Method)
 }
 
 func index(w http.ResponseWriter, r *http.Request) {
 	switch strings.ToUpper(r.Method) {
+		case "OPTIONS":
+			// Cross-origin post
+			log.Printf(r.Method)
+			respond(w, r)
 		case "POST":
 			// create
 			log.Printf(r.Method)

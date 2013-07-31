@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Angular rest test</title>
+	<script type="text/javascript" src="http://code.angularjs.org/1.1.5/angular.min.js"></script>
+	<script type="text/javascript" src="http://code.angularjs.org/1.1.5/angular-resource.min.js"></script>
+	<script type="text/javascript" src="app.js"></script>
+</head>
+<body ng-controller="HelloCtrl">
+	<label>app state: <input disabled ng-model="appState" /></label>
+	<form ng-submit="addMollusk()">
+		<label for="name">Navn: <input required ng-min-length="4" type="text" ng-mode="newMollusk.name" id="name"></label>
+		<label for="age">Alder: <input required type="text" ng-mode="newMollusk.age" id="age"></label>
+		<label for="hairColor">Hårfarve: <input required type="text" ng-mode="newMollusk.hairColor" id="hairColor"></label>
+		<input type="submit" value="Gem" />
+		<input type="reset" value="nulstil" />
+	</form>
+</body>
+</html>

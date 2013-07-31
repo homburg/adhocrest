@@ -34,3 +34,16 @@ func TestGet(t *testing.T) {
 		}
 	})
 }
+
+func TestPostNewResource(t *testing.t) {
+	req, err := http.NewRequest("POST", "http://example.com/foo", nil)
+	req.Write
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	w := httptest.NewRecorder()
+	index(w, req)
+
+	callback(w)
+}
