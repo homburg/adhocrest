@@ -1,16 +1,16 @@
 package adhocrest
 
 import (
+	"bytes"
 	"encoding/json"
 	"log"
 	"net/http"
 	"net/http/httptest"
-	"testing"
 	"strings"
-	"bytes"
+	"testing"
 )
 
-func testMethod(method string, callback func (w *httptest.ResponseRecorder)) {
+func testMethod(method string, callback func(w *httptest.ResponseRecorder)) {
 	req, err := http.NewRequest(method, "http://example.com/foo", nil)
 	if err != nil {
 		log.Fatal(err)
@@ -25,7 +25,7 @@ func testMethod(method string, callback func (w *httptest.ResponseRecorder)) {
 }
 
 func TestInvalidMethod(t *testing.T) {
-	testMethod("fisk", func (w *httptest.ResponseRecorder) {
+	testMethod("fisk", func(w *httptest.ResponseRecorder) {
 		if w.Code != http.StatusMethodNotAllowed {
 			t.Errorf("Expected status %d, got %d\n", http.StatusMethodNotAllowed, w.Code)
 		}
@@ -71,7 +71,7 @@ func TestPostNewResource(t *testing.T) {
 	handler := NewHandler("")
 
 	// Create a resource
-	data := map[string]string{"from":"httptest.Recorder"}
+	data := map[string]string{"from": "httptest.Recorder"}
 	jsonData, err := json.Marshal(data)
 	if nil != err {
 		t.Error(err)
