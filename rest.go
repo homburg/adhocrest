@@ -7,7 +7,6 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
-	"runtime"
 	"strings"
 
 	"github.com/nu7hatch/gouuid"
@@ -23,10 +22,6 @@ type resources map[string]resource
 
 // The global resource cache
 type resourceCache map[string]resources
-
-func init() {
-	runtime.GOMAXPROCS(runtime.NumCPU())
-}
 
 var html string
 
