@@ -111,6 +111,7 @@ func (h Handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		}
 
 		w.Header().Set("location", "/"+route.Resource+"/"+newResourceId)
+		w.Write(dataStr)
 		w.WriteHeader(http.StatusCreated)
 	case "PUT":
 		// Update
